@@ -1,0 +1,21 @@
+mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar^
+  -Dsonar.projectKey=MoreBugs^
+  -Dsonar.projectName='MoreBugs'^
+  -Dsonar.host.url=http://localhost:9000^
+  -Dsonar.token=sqp_0ff4a4a31d6df3c0a5b17bfddec867ef9f0b346d
+
+
+
+mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar^
+  -Dsonar.projectKey=PiyushKasture^
+  -Dsonar.projectName='PiyushKasture'^
+  -Dsonar.host.url=http://localhost:9000^
+  -Dsonar.token=sqp_8bf2c39599a74172c2f65896f0719cb1f335c423
+
+
+
+mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar^
+  -Dsonar.projectKey=PiyushMujmule^
+  -Dsonar.projectName='PiyushMujmule'^
+  -Dsonar.host.url=http://localhost:9000^
+  -Dsonar.token=sqp_b7d1cab6bfa071010c99afd7e3254f6ec685abf2
