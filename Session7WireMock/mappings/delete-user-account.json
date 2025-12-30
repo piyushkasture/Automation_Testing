@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/api/v1/Account",
+    "headers": {
+      "Content-Type":  {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.name"
+      }
+    ]
+  },
+
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "user-delete-account.json"
+  }
+}
