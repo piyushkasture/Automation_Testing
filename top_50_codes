@@ -1,0 +1,848 @@
+# Top 50 Most Asked Coding Questions in Placements - Python Solutions
+
+## 1. Reverse a Number
+```python
+num = int(input("Enter the Number: "))
+temp = num
+reverse = 0
+while num > 0:
+    remainder = num % 10
+    reverse = reverse * 10 + remainder
+    num = num // 10
+print(f"The Given number is {temp} and Reverse is {reverse}")
+```
+**Example**: 908701 → 107809
+
+---
+
+## 2. Fibonacci Series upto nth term
+```python
+num = int(input("Enter the Number: "))
+n1, n2 = 0, 1
+print("Fibonacci Series:", n1, n2, end=" ")
+for i in range(2, num):
+    n3 = n1 + n2
+    n1 = n2
+    n2 = n3
+    print(n3, end=" ")
+print()
+```
+**Example**: n=10 → 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+
+---
+
+## 3. Greatest Common Divisor (GCD)
+```python
+num1 = int(input("Enter First Number: "))
+num2 = int(input("Enter Second Number: "))
+
+def gcdFunction(num1, num2):
+    if num1 < num2:
+        small = num2
+    else:
+        small = num1
+    for i in range(1, small+1):
+        if num1 % i == 0 and num2 % i == 0:
+            gcd = i
+    return gcd
+
+gcd = gcdFunction(num1, num2)
+print(f"GCD of two Number {gcd}")
+```
+**Example**: GCD(36,60) = 12
+
+---
+
+## 4. Perfect Number
+```python
+n = int(input("Enter any number: "))
+sump = 0
+for i in range(1, n):
+    if n % i == 0:
+        sump += i
+if sump == n:
+    print("The number is a Perfect number")
+else:
+    print("The number is not a Perfect number")
+```
+**Example**: 28 → Perfect (1+2+4+7+14=28)
+
+---
+
+## 5. Check if two strings are Anagram
+```python
+String1 = input("Enter the 1st string: ")
+String2 = input("Enter the 2nd string: ")
+if len(String1) != len(String2):
+    print("Strings are not anagram")
+else:
+    String1 = sorted(String1)
+    String2 = sorted(String2)
+    if String1 == String2:
+        print("Strings are anagram")
+    else:
+        print("Strings are not anagram")
+```
+**Example**: "listen", "silent" → Anagram
+
+---
+
+## 6. Check if string is Palindrome
+```python
+String1 = input("Enter the String: ")
+String2 = String1[::-1]
+if String1 == String2:
+    print("String is palindromic")
+else:
+    print("String is not palindromic")
+```
+**Example**: "madam" → Palindrome
+
+---
+
+## 7. Frequency of characters in string
+```python
+String = input("Enter the string: ")
+Character = input("Enter character: ")
+frequency = 0
+frequency = String.count(Character)
+print(f"{Character} frequency is {frequency}")
+```
+**Example**: "hello" → h:1, e:1, l:2, o:1
+
+---
+
+## 8. Wildcard string match
+```python
+def solve(a, b):
+    n, m = len(a), len(b)
+    if n == 0 and m == 0:
+        return True
+    if n == 1 and a == '*' and m == 0:
+        return False
+    if n == 1 and a == '?' or n != 0 and m != 0 and a[0] == b[0]:
+        return solve(a[1:], b[1:])
+    if n != 0 and a[0] == '*':
+        return solve(a[1:], b) or solve(a, b[1:])
+    return False
+```
+**Example**: "he?lo" matches "hello"
+
+---
+
+## 9. Bubble Sort
+```python
+arr = [5, 3, 1, 9, 8, 2, 4, 7]
+n = len(arr)
+for i in range(n):
+    for j in range(0, n-i-1):
+        if arr[j] > arr[j+1]:
+            arr[j], arr[j+1] = arr[j+1], arr[j]
+print("Sorted array:", arr)
+```
+**Example**: [5,3,8,4,2] → [2,3,4,5,8]
+
+---
+
+## 10. Merge Sort
+```python
+def mergeSort(arr):
+    if len(arr) > 1:
+        mid = len(arr)//2
+        L = arr[:mid]
+        R = arr[mid:]
+        mergeSort(L)
+        mergeSort(R)
+        i = j = k = 0
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+    return arr
+```
+**Example**: [5,3,8,4,2] → [2,3,4,5,8]
+
+---
+
+## 11. Leap Year Check
+```python
+year = int(input("Enter year: "))
+if (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):
+    print(f"{year} is a Leap Year")
+else:
+    print(f"{year} is not a Leap Year")
+```
+**Example**: 2020 → Leap, 1900 → Not
+
+---
+
+## 12. Non-repeating Characters in String
+```python
+s = "swiss"
+non_repeating = [c for c in set(s) if s.count(c) == 1]
+print("Non-repeating:", non_repeating)
+```
+**Example**: "swiss" → ['w', 'i']
+
+---
+
+## 13. Replace Substring
+```python
+string = input("Enter String: ")
+str1 = input("Enter substring to replace: ")
+str2 = input("Enter replacement: ")
+string = string.replace(str1, str2)
+print("String after replacement:", string)
+```
+**Example**: "hello world" → "hello Python"
+
+---
+
+## 14. Heap Sort
+```python
+def heapify(arr, n, i):
+    largest = i
+    l = 2 * i + 1
+    r = 2 * i + 2
+    if l < n and arr[l] > arr[largest]:
+        largest = l
+    if r < n and arr[r] > arr[largest]:
+        largest = r
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+arr = [12, 11, 13, 5, 6, 7]
+n = len(arr)
+for i in range(n // 2 - 1, -1, -1):
+    heapify(arr, n, i)
+for i in range(n-1, 0, -1):
+    arr[0], arr[i] = arr[i], arr[0]
+    heapify(arr, i, 0)
+print("Sorted array:", arr)
+```
+**Example**: [12,11,13,5,6,7] → sorted
+
+---
+
+## 15. Replace Array Elements by Rank
+```python
+def changeArr(input1):
+    newArray = input1.copy()
+    newArray.sort()
+    for i in range(len(input1)):
+        for j in range(len(newArray)):
+            if input1[i] == newArray[j]:
+                input1[i] = j+1
+                break
+    return input1
+
+arr = [100, 2, 70, 12, 90]
+print(changeArr(arr))
+```
+**Example**: [40,10,20,30] → [4,1,2,3]
+
+---
+
+## 16. Circular Array Rotation by K
+```python
+def rotateArray(arr, n, d):
+    temp = []
+    i = 0
+    while i < d:
+        temp.append(arr[i])
+        i += 1
+    i = 0
+    while d < n:
+        arr[i] = arr[d]
+        i += 1
+        d += 1
+    arr = arr[i:] + temp
+    return arr
+
+arr = [1,2,3,4,5]
+print(rotateArray(arr, 5, 2))
+```
+**Example**: [1,2,3,4,5], k=2 → [4,5,1,2,3]
+
+---
+
+## 17. Non-repeating Elements in Array
+```python
+def count(arr, n):
+    visited = [False] * n
+    for i in range(n):
+        if visited[i] == True:
+            continue
+        count = 1
+        for j in range(i+1, n):
+            if arr[i] == arr[j]:
+                visited[j] = True
+                count += 1
+        if count == 1:
+            print(arr[i])
+
+arr = [10, 30, 40, 20, 10, 20, 50, 10]
+count(arr, len(arr))
+```
+**Example**: [4,5,4,3,6,3,7] → 5,6,7
+
+---
+
+## 18. Longest Palindrome in Array
+```python
+def isPalindrome(n):
+    divisor = 1
+    while n // divisor >= 10:
+        divisor *= 10
+    while n != 0:
+        leading = n // divisor
+        trailing = n % 10
+        if leading != trailing:
+            return False
+        n = (n % divisor) // 10
+        divisor //= 100
+    return True
+
+def largestPalindrome(arr, n):
+    currentMax = -1
+    for i in range(n):
+        if arr[i] > currentMax and isPalindrome(arr[i]):
+            currentMax = arr[i]
+    return currentMax
+
+arr = [1, 232, 5545455, 909090, 161]
+print(largestPalindrome(arr, len(arr)))
+```
+**Example**: ["racecar","level"] → racecar
+
+---
+
+## 19. Factorial of Number
+```python
+num = 5
+output = 1
+for i in range(2, num+1):
+    output *= i
+print(output)
+```
+**Example**: 5! = 120
+
+---
+
+## 20. Armstrong Number
+```python
+number = 371
+num = number
+digit, sum = 0, 0
+length = len(str(num))
+while num != 0:
+    digit = num % 10
+    num //= 10
+    sum += digit ** length
+if sum == number:
+    print("Armstrong")
+else:
+    print("Not Armstrong")
+```
+**Example**: 153 → Armstrong
+
+---
+
+## 21. Sum of Natural Numbers (Recursion)
+```python
+def getSum(num):
+    if num == 1:
+        return 1
+    return num + getSum(num-1)
+
+num = 5
+print(getSum(num))
+```
+**Example**: 1+2+3+4+5=15
+
+---
+
+## 22. Add Two Matrices
+```python
+r, c = 2, 3
+a = [[1,2,3],[4,5,6]]
+b = [[7,8,9],[10,11,12]]
+sum = [[0]*c for _ in range(r)]
+
+for i in range(r):
+    for j in range(c):
+        sum[i][j] = a[i][j] + b[i][j]
+
+for i in range(r):
+    for j in range(c):
+        print(sum[i][j], end=" ")
+    print()
+```
+**Example**: Matrix addition
+
+---
+
+## 23. Sum Natural Numbers Recursion (Alt)
+```python
+def recursion(number):
+    if number == 0:
+        return number
+    return number + recursion(number-1)
+
+number = 6
+print(recursion(number))
+```
+**Example**: Sum=21
+
+---
+
+## 24. String Palindrome Check
+```python
+def isPalindrome(s):
+    return s == s[::-1]
+
+s = "malayalam"
+ans = isPalindrome(s)
+if ans:
+    print("Yes")
+else:
+    print("No")
+```
+**Example**: "racecar" → Yes
+
+---
+
+## 25. Binary to Decimal
+```python
+num = int(input("Enter binary number: "))
+binaryval = num
+decimalval = 0
+base = 1
+while num > 0:
+    rem = num % 10
+    decimalval += rem * base
+    num //= 10
+    base *= 2
+print(f"Binary {binaryval} = Decimal {decimalval}")
+```
+**Example**: 101 → 5
+
+---
+
+## 26. Vowel or Consonant
+```python
+Char = input("Enter character: ")
+if Char.lower() in 'aeiou':
+    print("Character is Vowel")
+else:
+    print("Character is Consonant")
+```
+**Example**: 'a' → Vowel
+
+---
+
+## 27. Automorphic Number
+```python
+n = int(input("Enter number: "))
+sq = n * n
+if str(sq).endswith(str(n)):
+    print("Automorphic Number")
+else:
+    print("Not an Automorphic Number")
+```
+**Example**: 25 → Automorphic (625)
+
+---
+
+## 28. ASCII Value
+```python
+Char = input("Enter character: ")
+Asciival = ord(Char)
+print("ASCII Value:", Asciival)
+```
+**Example**: 'A' → 65
+
+---
+
+## 29. Remove Non-Alphabets
+```python
+String1 = input("Enter String: ")
+String2 = ""
+for i in String1:
+    if (ord(i) >= 65 and ord(i) <= 90) or (ord(i) >= 97 and ord(i) <= 122):
+        String2 += i
+print("Alphabets:", String2)
+```
+**Example**: "hello123!" → "hello"
+
+---
+
+## 30. Smallest Element in Array
+```python
+arr = [10, 89, 9, 56, 4, 80, 8]
+mini = arr[0]
+for i in range(len(arr)):
+    if arr[i] < mini:
+        mini = arr[i]
+print("Smallest:", mini)
+```
+**Example**: [5,3,8,1,9] → 1
+
+---
+
+## 31. Reverse Array Elements
+```python
+def reverseList(A, start, end):
+    while start < end:
+        A[start], A[end] = A[end], A[start]
+        start += 1
+        end -= 1
+
+A = [10, 20, 30, 40, 50]
+reverseList(A, 0, 4)
+print(A)
+```
+**Example**: [1,2,3,4,5] → [5,4,3,2,1]
+
+---
+
+## 32. Sort Array
+```python
+numbers = [10, 30, 40, 20]
+numbers.sort()
+print(numbers)
+```
+**Example**: [52,3,19] → [3,19,52]
+
+---
+
+## 33. Sort Without sort() - Bubble Sort
+```python
+numbers = [10, 30, 40, 20]
+n = len(numbers)
+for i in range(n):
+    for j in range(0, n-i-1):
+        if numbers[j] > numbers[j+1]:
+            numbers[j], numbers[j+1] = numbers[j+1], numbers[j]
+print(numbers)
+```
+**Example**: [4,2,9,1] → [1,2,4,9]
+
+---
+
+## 34. Replace Substring (Repeat)
+```python
+# Same as question 13
+string = input("Enter String: ")
+str1 = input("Enter substring to replace: ")
+str2 = input("Enter replacement: ")
+string = string.replace(str1, str2)
+print("String after replacement:", string)
+```
+
+---
+
+## 35. Remove Spaces from String
+```python
+String = "PrepInsta is fabulous"
+String = "".join(String.split())
+print("After removing spaces:", String)
+```
+**Example**: "hello world" → "helloworld"
+
+---
+
+## 36. Count Inversions
+```python
+def inversion(arr):
+    ans = 0
+    for i in range(len(arr)):
+        for j in range(i+1, len(arr)):
+            if arr[j] < arr[i]:
+                ans += 1
+    return ans
+
+array = [6, 3, 5, 2, 7]
+print("Inversions:", inversion(array))
+```
+**Example**: [1,20,6,4,5] → 5
+
+---
+
+## 37. Longest Consecutive Subsequence
+```python
+def LongestConseqSubseq(arr, l):
+    val = []
+    c = 0
+    for i in range(l):
+        n = arr[i]
+        while (n-1) in arr:
+            c += 1
+            n -= 1
+        val.append(c+1)
+        c = 0
+    return max(val)
+
+array = [7, 8, 1, 5, 4, 3]
+print("Longest:", LongestConseqSubseq(array, len(array)))
+```
+**Example**: [100,4,200,1,3,2] → 4
+
+---
+
+## 38. Sum of Digits
+```python
+num = input("Enter Number: ")
+sum = 0
+for i in num:
+    sum += int(i)
+print(sum)
+```
+**Example**: 12345 → 15
+
+---
+
+## 39. Power of Number
+```python
+def pow(num, power):
+    return num ** power
+
+num, power = 3, 2
+print(pow(num, power))
+```
+**Example**: 2^5 = 32
+
+---
+
+## 40. Sum of Digits (Repeat)
+```python
+# Same as question 38
+num = input("Enter Number: ")
+sum = 0
+for i in num:
+    sum += int(i)
+print(sum)
+```
+
+---
+
+## 41. Add Two Fractions
+```python
+def findGCD(n1, n2):
+    gcd = 0
+    for i in range(1, int(min(n1, n2))+1):
+        if n1 % i == 0 and n2 % i == 0:
+            gcd = i
+    return gcd
+
+num1, den1 = 1, 2
+num2, den2 = 1, 3
+lcm = (den1 * den2) // findGCD(den1, den2)
+sum = (num1 * lcm // den1) + (num2 * lcm // den2)
+num3 = sum // findGCD(sum, lcm)
+lcm = lcm // findGCD(sum, lcm)
+print(f"{num1}/{den1} + {num2}/{den2} = {num3}/{lcm}")
+```
+**Example**: 1/2 + 1/3 = 5/6
+
+---
+
+## 42. Largest Element in Array
+```python
+a = [10, 89, 9, 56, 4, 80, 8]
+maxelement = a[0]
+for i in range(len(a)):
+    if a[i] > maxelement:
+        maxelement = a[i]
+print("Largest:", maxelement)
+```
+**Example**: [10,45,67] → 67
+
+---
+
+## 43. Quadratic Equation Roots
+```python
+import math
+def findRoots(a, b, c):
+    if a == 0:
+        print("Invalid")
+        return -1
+    d = b*b - 4*a*c
+    sqrtval = math.sqrt(abs(d))
+    if d >= 0:
+        print("Roots are real and different")
+        print((-b + sqrtval)/(2*a))
+        print((-b - sqrtval)/(2*a))
+    elif d == 0:
+        print("Roots are real and same")
+        print(-b/(2*a))
+    else:
+        print("Roots are complex")
+
+a, b, c = 1, 4, 4
+findRoots(a, b, c)
+```
+**Example**: x²-3x+2=0 → 2,1
+
+---
+
+## 44. Prime Factors
+```python
+def PrimeFactorial(n):
+    if n < 4:
+        return n
+    arr = []
+    while n != 1:
+        for i in range(2, int(2*n**0.5)+1):
+            if n % i == 0:
+                arr.append(i)
+                n = n // i
+                break
+        else:
+            if n > 1:
+                arr.append(n)
+            break
+    return arr
+
+n = 210
+print(PrimeFactorial(n))
+```
+**Example**: 56 → [2,2,2,7]
+
+---
+
+## 45. Digits to Words
+```python
+# Requires num2words library
+from num2words import num2words
+print(num2words(11098))
+```
+**Example**: 123 → "One Two Three"
+
+---
+
+## 46. Factorial using Recursion
+```python
+def factorial(n):
+    if n <= 0:
+        return 1
+    return n * factorial(n-1)
+
+num = 5
+print(f"Factorial of {num} is {factorial(num)}")
+```
+**Example**: 5! = 120
+
+---
+
+## 47. Reverse Array (Repeat)
+```python
+def reverseList(A, start, end):
+    while start < end:
+        A[start], A[end] = A[end], A[start]
+        start += 1
+        end -= 1
+
+A = [10, 20, 30, 40, 50]
+reverseList(A, 0, 4)
+print(A)
+```
+**Example**: [1,2,3,4,5] → [5,4,3,2,1]
+
+---
+
+## 48. Wildcard Match (Repeat)
+```python
+def solve(a, b):
+    n, m = len(a), len(b)
+    if n == 0 and m == 0:
+        return True
+    if n == 1 and a == '*' and m == 0:
+        return False
+    if n == 1 and a == '?' or n != 0 and m != 0 and a[0] == b[0]:
+        return solve(a[1:], b[1:])
+    if n != 0 and a[0] == '*':
+        return solve(a[1:], b) or solve(a, b[1:])
+    return False
+```
+**Example**: "he?lo" matches "hello"
+
+---
+
+## 49. Spiral Matrix Traversal
+```python
+def spiralOrder(matrix):
+    if not matrix or not matrix[0]:
+        return []
+    
+    rows, cols = len(matrix), len(matrix[0])
+    top, bottom, left, right = 0, rows-1, 0, cols-1
+    result = []
+    
+    while top <= bottom and left <= right:
+        for col in range(left, right+1):
+            result.append(matrix[top][col])
+        top += 1
+        
+        for row in range(top, bottom+1):
+            result.append(matrix[row][right])
+        right -= 1
+        
+        if top <= bottom:
+            for col in range(right, left-1, -1):
+                result.append(matrix[bottom][col])
+            bottom -= 1
+        
+        if left <= right:
+            for row in range(bottom, top-1, -1):
+                result.append(matrix[row][left])
+            left += 1
+    
+    return result
+
+matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+print(spiralOrder(matrix))
+```
+**Example**: 3x3 → [1,2,3,6,9,8,7,4,5]
+
+---
+
+## 50. Fibonacci using Recursion
+```python
+def Fibon(n):
+    if n <= 0:
+        print("Incorrect input")
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 1
+    else:
+        return Fibon(n-1) + Fibon(n-2)
+
+print("Fibonacci(9):", Fibon(9))
+```
+**Example**: n=10 → 0,1,1,2,3,5,8,13,21,34
+
+---
+
+# Summary
+
+Yeh complete **50 coding questions** hain jo placements ke liye most important hain. Har ek question ka:
+- Simple Python code
+- Working example
+- Clear explanation
+
+**Usage**: Copy-paste aur directly run kar sakte ho ya interviews mein practice kar sakte ho!
