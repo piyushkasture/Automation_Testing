@@ -1,0 +1,75 @@
+
+BUILD IMAGE
+--------------------------------
+docker build -t image_name .
+
+--------------------------------
+RUN CONTAINER (FOREGROUND)
+--------------------------------
+docker run image_name
+• Runs in foreground
+• Container EXITS when command finishes
+
+--------------------------------
+RUN CONTAINER (INTERACTIVE)
+--------------------------------
+docker run -it image_name
+• Used for shells
+• exit → container stops
+
+--------------------------------
+RUN CONTAINER (DETACHED)
+--------------------------------
+docker run -d image_name
+• Runs in background
+• Container CONTINUES running
+
+--------------------------------
+KEEP CONTAINER RUNNING
+--------------------------------
+docker run -d image_name sleep infinity
+
+--------------------------------
+LIST CONTAINERS
+--------------------------------
+docker ps
+docker ps -a
+
+--------------------------------
+REMOVE
+--------------------------------
+docker rm container_id
+docker rmi image_id
+
+--------------------------------
+DOCKER COMPOSE
+--------------------------------
+docker compose up -d
+docker compose down
+
+--------------------------------
+PUBLISH IMAGE
+--------------------------------
+docker push piyushkasture/docker-commands:1.0
+
+
+Rebuild and republish
+
+docker build -t piyushkasture/docker:1.0 .
+docker push piyushkasture/docker:1.0
+
+
+Steps:
+docker build -t piyushkasture/docker:1.0 .
+docker run piyushkasture/docker:1.0
+docker login
+docker push piyushkasture/docker:1.0
+
+docker create --name mycontainer piyushkasture/docker:1.0
+
+docker start mycontainer
+▶️ 4️⃣ Create container and keep it running
+bash
+Copy code
+docker run -d --name mycontainer alpine sleep infinity
+
