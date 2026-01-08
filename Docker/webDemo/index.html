@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <script>
+        function greetUser() {
+            var r1 = Number(document.getElementById("uname").value);
+            var r2 = Number(document.getElementById("no2").value);
+            sum = r1 + r2;
+            document.getElementById("id1").innerHTML ="Add: " + sum
+        }
+    </script>
+    <form action="">
+        No-1: <input type="number" id="uname"> <br>
+        No-2: <input type="number" id="no2"> <br>
+        <input type="button" value="Add" onclick="greetUser()">
+    </form>
+    <h1>Hello Docker</h1>
+    <h2>Docker is Docker</h2>
+    <p id="id1"> </p>
+    <img src="./logo.png" alt="Docker Image">
+    
+
+</body>
+
+</html>
