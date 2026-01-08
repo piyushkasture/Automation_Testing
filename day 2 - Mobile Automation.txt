@@ -1,0 +1,3 @@
+1. Install demo app on real device and print all packages installed on the device 
+2. Explore app alerts from demo application and handle at least 5 alerts from list 
+3. Check background color changes on bouncing ball game

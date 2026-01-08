@@ -1,0 +1,11 @@
+Assignment 1:
+Day 1
+
+ Notepad Automation
+ Launch Notepad.
+ Type some text, edit it, and save the file.
+
+ Calculator Automation
+ Launch Calculator.
+ Perform basic arithmetic operations as separate tests for addition, multiplication, division.
+ Switch to Graphing mode and verify the change.
